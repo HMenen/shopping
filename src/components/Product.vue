@@ -11,7 +11,7 @@
       <div
         class="product-color"
         :style="{ background: colors[info.color]}"></div>
-      <div class="product-cost">$ {{ info.cost }}</div>
+      <div class="product-cost">¥ {{ info.cost }}</div>
       <div
         class="product-add-cart"
         @click.prevent="handleCart"
