@@ -24,7 +24,7 @@
             <span class="cart-count-del" @click="handleCart(index, 1)">+</span>
         </div>
         <div class="cart-cost">{{ productDicList[item.id].cost * item.count }}</div>
-        <div class="cart-delete" @click="handleDel(productDicList[item.id].id)">删除</div>
+        <div class="cart-delete" @click="handleDel(productDicList[item.id].id)">{{productDicList[item.id].id}}删除</div>
       </div>
     </div>
     <div class="empty" v-if="!carList.length">购物车为空</div>
@@ -69,6 +69,7 @@ export default {
       })
     },
     handleDel (id) {
+        console.log(id);
       this.$store.commit('delCart', id);
     }
   },

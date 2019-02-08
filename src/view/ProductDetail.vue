@@ -9,7 +9,7 @@
         <div class="product-cost">¥{{ product.cost }}</div>
         <div 
           class="product-add-cart"
-          @click="addCart">加入购物车</div>
+          @click="addCart(500)">加入购物车</div>
       </div>
     </div>
     <div class="product-desc">
@@ -28,19 +28,37 @@ export default {
   data () {
     return{
       product: null,
-      id: parseInt(this.$route.params.id)
+      id: parseInt(this.$route.params.id),
+      isClick: true,
+      oldTime: ''
     }
   },
   methods: {
     getProduct () {
       setTimeout( () => {
-          console.log(product_data);
-          console.log(this.id);
         this.product = product_data.find(item => item.id === this.id)
       }, 500);
     },
-    addCart () {
-      this.$store.commit('addCar', this.id);
+    addCart (msc) {
+      // if (this.isClick) {
+      //   this.$store.commit('addCar', this.id);
+      //   this.isClick = false;
+      // }
+      // setTimeout( () => {
+      //   this.isClick = true;
+      // }, 3000);
+
+      //防止短时间连续点击
+      if (this.oldTime === '') {
+        this.oldTime = new Date().getTime();
+        this.$store.commit('addCar', this.id);
+      } else {
+        if (new Date().getTime() - this.oldTime > msc) {
+          this.$store.commit('addCar', this.id);
+        } else {
+          return;
+        }
+      }
     }
   },
   mounted () {

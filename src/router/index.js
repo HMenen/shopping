@@ -7,7 +7,10 @@ export default new Router({
   routes: [
     {
       path: '/cart',
-      component: (resolve) => require(['../view/Cart.vue'], resolve)
+      component: (resolve) => require(['../view/Cart.vue'], resolve),
+      meta: {
+        title: '购物车'
+      }
     },
     {
       path: '/product/:id',

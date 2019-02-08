@@ -45,7 +45,7 @@ export default new Vuex.Store({
       item.count += payload.count;
     },
     delCart (state, id) {
-      let index = state.carList.find(item => item.id === id);
+      let index = state.carList.findIndex(item => item.id === id);
       state.carList.splice(index, 1);
     }
   },
