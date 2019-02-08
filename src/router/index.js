@@ -1,11 +1,22 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import List from '../view/List.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/cart',
+      component: (resolve) => require(['../view/Cart.vue'], resolve)
+    },
+    {
+      path: '/product/:id',
+      component: (resolve) => require(['../view/ProductDetail.vue'], resolve),
+      mode: 'history',
+      meta: {
+        title: '商品详情'
+      }
+    },
     {
       path: '/list',
       name: 'list',
@@ -18,6 +29,6 @@ export default new Router({
     {
       path: '*',
       redirect: '/list'
-    }
+    },
   ]
 })

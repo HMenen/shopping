@@ -26,8 +26,30 @@ export default new Vuex.Store({
     //添加商品列表
     setProductList (state, data) {
       state.productList = data;
+    },
+    //添加购物车
+    addCar (state, id) {
+      const isAdd = state.carList.find(item => item.id === id);
+      if (isAdd) {
+        isAdd.count ++;
+      } else {
+        state.carList.push({
+          id: id,
+          count: 1
+        })
+      }
+    },
+    //添加、减少购物车商品数量
+    editCart (state, payload){
+      let item = state.carList.find(item => item.id === payload.id);
+      item.count += payload.count;
+    },
+    delCart (state, id) {
+      let index = state.carList.find(item => item.id === id);
+      state.carList.splice(index, 1);
     }
   },
+  
   actions: {
     //请求商品列表数据
      getProductList (context) {

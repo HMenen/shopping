@@ -7,7 +7,7 @@
       <dir class="header-menu">
         <router-link to="/cart" class="header-menu-cart">
           购物车
-          <span v-if="cartList.length">{{ carList.length }}</span>
+          <span v-if="carList.length">{{ carList.length }}</span>
         </router-link>
       </dir>
     </div>
@@ -23,9 +23,9 @@ export default {
     
   },
   computed: {
-    cartList () {
+    carList () {
       return this.$store.state.carList;
-    }
+    },
   }
 }
 </script>
@@ -56,9 +56,10 @@ html, body{
     .header-menu-cart{
       color: #fff;
       span{
-        border-radius: 50%;
-        background: #ff5500;
+        // border-radius: 50%;
+        // background: #ff5500;
         color: #fff;
+
       }
     }
   }
