@@ -9,7 +9,7 @@
         <div class="product-cost">¥{{ product.cost }}</div>
         <div 
           class="product-add-cart"
-          @click="addCart(500)">加入购物车</div>
+          @click="addCart(3000)">加入购物车</div>
       </div>
     </div>
     <div class="product-desc">
@@ -49,12 +49,13 @@ export default {
       // }, 3000);
 
       //防止短时间连续点击
-      if (this.oldTime === '') {
+      if ( this.oldTime === '' ) {
         this.oldTime = new Date().getTime();
         this.$store.commit('addCar', this.id);
       } else {
-        if (new Date().getTime() - this.oldTime > msc) {
+        if ( new Date().getTime() - this.oldTime > msc ) {
           this.$store.commit('addCar', this.id);
+          this.oldTime == new Date().getTime();
         } else {
           return;
         }
