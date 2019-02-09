@@ -6,6 +6,14 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/demo2',
+      component: (resolve) => require(['../components/demos/Demo2.vue'], resolve),
+    },
+    {
+      path: '/demo1',
+      component: (resolve) => require(['../components/demos/Demo1.vue'], resolve),
+    },
+    {
       path: '/cart',
       component: (resolve) => require(['../view/Cart.vue'], resolve),
       meta: {
