@@ -15,7 +15,7 @@
 * mounted ：完成挂载
 * destroy相关：销毁完成后，我们再重新改变message的值，vue不再对此动作进行响应了。但是原先生成的dom元素还存在，可以这么理解，执行了destroy操作，后续就不再受vue控制了。
 
-##### 生命周期总结
+#### 生命周期总结
 * beforecreate : 举个栗子：可以在这加个loading事件 
 * created ：在这结束loading，还做一些初始化，实现函数自执行 
 * mounted ： 在这发起后端请求，拿回数据，配合路由钩子做一些事情
