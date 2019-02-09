@@ -2,6 +2,7 @@ import Vuex from 'vuex'
 import Vue from 'vue'
 
 import product_data from '../data/product'
+// import { resolve } from 'dns';
 
 Vue.use(Vuex);
 
@@ -47,6 +48,10 @@ export default new Vuex.Store({
     delCart (state, id) {
       let index = state.carList.findIndex(item => item.id === id);
       state.carList.splice(index, 1);
+    },
+    //清空购物车
+    emptyCart (state) {
+      state.carList = [];
     }
   },
   
@@ -56,6 +61,14 @@ export default new Vuex.Store({
        setTimeout(() => {
          context.commit('setProductList', product_data);
        }, 500);
+     },
+     buy (context) {
+       return new Promise (resolve => {
+         setTimeout(() => {
+           context.commit('emptyCart');
+           resolve();
+         }, 500);
+       });
      } 
   }
 });

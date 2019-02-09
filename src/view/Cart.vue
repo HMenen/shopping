@@ -24,15 +24,15 @@
             <span class="cart-count-del" @click="handleCart(index, 1)">+</span>
         </div>
         <div class="cart-cost">{{ productDicList[item.id].cost * item.count }}</div>
-        <div class="cart-delete" @click="handleDel(productDicList[item.id].id)">{{productDicList[item.id].id}}删除</div>
+        <div class="cart-delete" @click="handleDel(productDicList[item.id].id)">删除</div>
       </div>
     </div>
     <div class="empty" v-if="!carList.length">购物车为空</div>
     <div class="cart-promotion" v-show="carList.length">
         <span>使用优惠码：</span>
         <!-- <div> -->
-        <span><input type="text"/></span>
-        <span class="cart-promotion-confirm">验证</span>
+        <span><input type="text" v-model="promotionCode"/></span>
+        <span class="cart-promotion-confirm" @click="promotionCheck">验证</span>
         <!-- </div> -->
     </div>
     <div class="cart-footer" v-show="carList.length">
@@ -40,13 +40,13 @@
         共计<span>{{ totalCount }}</span>件商品
       </div>
       <div  class="cart-footer-total-count">
-        应付总额 ¥<span>{{ costAll }}</span>
+        应付总额 ¥<span>{{ costAll - promotion }}</span>
         <br>
         <template>
-           (优惠¥<span>111</span> )
+           (优惠¥<span>{{ promotion }}</span> )
         </template>
       </div>
-      <div class="submmit">现在结算</div>
+      <div class="submmit" @click="submit">现在结算</div>
     </div>
   </div>
 </template>
@@ -57,7 +57,9 @@ export default {
   name: 'cart',
   data () {
     return {
-      productList: product_data
+      productList: product_data,
+      promotionCode: '',
+      promotion: ''
     }
   },
   methods: {
@@ -71,6 +73,23 @@ export default {
     handleDel (id) {
         console.log(id);
       this.$store.commit('delCart', id);
+    },
+    //验证优惠码
+    promotionCheck () {
+      if (this.promotionCode == '') {
+          alert('请输入验证码');
+      } else {
+          this.promotion = 500;
+      }
+    },
+    //结算订单
+    submit () {
+        let res = confirm ('是否确认购买');
+        if (res) {
+          this.$store.dispatch('buy').then(() => {
+            window.alert('购买成功')
+          });
+        } 
     }
   },
   computed: {
