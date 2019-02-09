@@ -14,6 +14,7 @@
 * beforeMount：完成了 el 和 data 初始化 ，但是el中是没有内容地，只是占了一个坑
 * mounted ：完成挂载
 * destroy相关：销毁完成后，我们再重新改变message的值，vue不再对此动作进行响应了。但是原先生成的dom元素还存在，可以这么理解，执行了destroy操作，后续就不再受vue控制了。
+
 #####生命周期总结
 * beforecreate : 举个栗子：可以在这加个loading事件 
 * created ：在这结束loading，还做一些初始化，实现函数自执行 
