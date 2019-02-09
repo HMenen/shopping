@@ -1,7 +1,7 @@
 # shopping
 
 > A Vue.js project
-> 一个简单地、的购物网站
+> 一个简单的购物网站
 
 ## Build Setup
 
